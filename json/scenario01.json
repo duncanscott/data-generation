@@ -4,7 +4,6 @@
   "status":"pending",
   "name":"pacbio-libraries-01",
   "comments": "create pac-bio-libraries",
-  "notification-email":["dnscott@lbl.gov","kmtaylor@lbl.gov"]
   "processes":
     [
       {
