@@ -1,0 +1,29 @@
+{
+  "_id":"scenario-template_1",
+  "type":"scenario-template",
+  "status":"pending",
+  "name":"sample-submission_01",
+  "comments": "a simple scenario with one process with no dependencies",
+  "processes":
+    [
+      {
+        "process-key":"sample-submission",
+        "process-template": "sample-submission-01",
+        "params": {
+          "output-count": 2,
+          "mode": "clarity-api"
+        },
+        "inputs":[],
+        "outputs": {
+          "sample1": {
+            "container-name": "plate1",
+            "location": "A2"
+          },
+          "sample2": {
+            "container-name": "plate1",
+            "location": "A3"
+          }
+        }
+      }
+    ]
+}

@@ -1,0 +1,89 @@
+{
+  "_id":"scenario-template_02",
+  "type":"scenario-template",
+  "status":"pending",
+  "name":"sample-qc_02",
+  "comments": "a process scenario with a single process that has dependencies on scenarios that will be automatically submitted",
+  "dependencies": {
+    "key1": {
+      "scenario-template-id":"scenario-template_1",
+      "params": { //override params provided in scenario template
+        "output-count": 2,
+        "mode": "clarity-api",
+        "container-type": "plate",
+        "outputs": {
+          "sample1": {
+            "container-name": "plate1",
+            "location": "A2"
+          },
+          "sample2": {
+            "container-name": "plate1",
+            "location": "A3"
+          }
+        }
+      }
+    },
+    "key2": {
+      "scenario-template-id":"scenario-template_1",
+      "params": { //override params provided in scenario template
+        "output-count": 2,
+        "mode": "clarity-api",
+        "container-type": "tube",
+        "outputs": {
+          "sample1": {
+            "container-name": "tube1"
+          },
+          "sample2": {
+            "container-name": "tube2"
+          }
+        }
+      }
+    }
+  },
+  "processes":
+    [
+      {
+        "process-key":"sample-qc",
+        "process-template": "sample-qc-01",
+        "params":{
+          "mode": "clarity-api"
+        },
+        "inputs":
+        [
+          {
+            "scenario-key": "key1",
+            "process-key":"sample-submission",
+            "output": "sample1",
+            "params": {
+              "outcome": "pass"
+            }
+          },
+          {
+            "scenario-key": "key1",
+            "process-key":"sample-submission",
+            "output": "sample2",
+            "params": {
+              "outcome": "fail-rna-contamination"
+            }
+          },
+          {
+            "scenario-key": "key2",
+            "process-key":"sample-submission",
+            "output": "sample1",
+            "params": {
+              "outcome": "pass"
+            }
+          },
+          {
+            "scenario-key": "key2",
+            "process-key":"sample-submission",
+            "output": "sample2",
+            "params": {
+              "outcome": "pass"
+            }
+          }
+        ],
+        "outputs":[]
+      }
+    ]
+}

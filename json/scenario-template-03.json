@@ -1,9 +1,8 @@
 {
-  "_id":"scenario-1",
-  "type":"scenario",
-  "status":"pending",
+  "_id":"scenario-template_03",
+  "type":"scenario-template",
   "name":"pacbio-libraries-01",
-  "comments": "create pac-bio-libraries",
+  "comments": "create pac-bio-libraries, no dependencies on other scenarios",
   "processes":
     [
       {

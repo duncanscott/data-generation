@@ -1,0 +1,26 @@
+{
+  "_id":"scenario_3",
+  "type":"scenario",
+  "template-scenario-id": "scenario-tempalte-05",
+  "name":"sample-qc_03",
+  "comments": "a process scenario with a single process that has dependencies on previously submitted scenarios",
+  "processes":
+    [
+      {
+        "process-key":"sample-qc",
+        "process-template": "sample-qc-01",
+        "params":{
+          "mode": "clarity-api"
+        },
+        "inputs":
+        [
+          {
+            "scenario-id": "previosly-submitted-scenario_SKDSDS",
+            "process-key":"sample-submission",
+            "comment": "no individual output specified --> use all outputs"
+          }
+        ],
+        "outputs":[]
+      }
+    ]
+}
