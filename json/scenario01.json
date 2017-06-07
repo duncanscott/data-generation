@@ -1,3 +1,76 @@
 {
-  "type":"scenario"
+  "_id":"scenario-1",
+  "type":"scenario",
+  "status":"pending",
+  "name":"pacbio-libraries-01",
+  "comments": "create pac-bio-libraries",
+  "notification-email":["dnscott@lbl.gov","kmtaylor@lbl.gov"]
+  "processes":
+    [
+      {
+        "process-key":"sample-submission",
+        "template": "sample-submission-01",
+        "params": {
+          "output-count": 2,
+          "mode": "clarity-api"
+        },
+        "inputs":[],
+        "outputs": {
+          "sample1": {
+            "container-name": "plate1",
+            "location": "A2"
+          },
+          "sample2": {
+            "container-name": "plate1",
+            "location": "A3"
+          }
+        }
+      },
+      {
+        "process-key":"sample-qc",
+        "template": "sample-qc-01",
+        "params":{
+          "mode": "clarity-api",
+          "pass": true
+        },
+        "inputs":
+          [
+            {
+              "process-key":"sample-submission",
+              "output": "sample1",
+              "params": {
+                "outcome": "fail-rna-contamination"
+              }
+            },
+            {
+              "process-key":"sample-submission",
+              "output": "sample2",
+              "params": {
+                "outcome": "pass"
+              }
+            }
+          ],
+        "outputs":[]
+      },
+      {
+        "process-key":"aliquot-creation",
+        "template":"aliquot-creation-01",
+        "params":{"output-count": 2, "mode":"clarity-api"},
+        "dependencies":
+          [
+            {"process-key":"sample-qc"}
+          ],
+        "inputs":
+          [
+            {
+              "process-key":"sample-submission",
+              "output": "sample1"
+            },
+            {
+              "process-key":"sample-submission",
+              "output": "sample2"
+            }
+          ]
+      }
+    ]
 }
