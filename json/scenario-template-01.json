@@ -1,7 +1,6 @@
 {
   "_id":"scenario-template_1",
   "type":"scenario-template",
-  "status":"pending",
   "name":"sample-submission_01",
   "comments": "a simple scenario with one process with no dependencies",
   "processes":
